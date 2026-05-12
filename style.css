@@ -202,3 +202,9 @@ h1 {
   .quote-text { font-size: 19px; }
   h1 { font-size: 22px; }
 }
+
+.version {
+  font-size: 11px;
+  color: var(--text-light);
+  letter-spacing: 0.08em;
+}
