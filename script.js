@@ -213,3 +213,27 @@ document.getElementById('dateLabel').textContent =
 
 // init
 showQuote();
+
+function switchTab(tab, event) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-quote').style.display = tab === 'quote' ? 'flex' : 'none';
+  document.getElementById('tab-tehilim').style.display = tab === 'tehilim' ? 'block' : 'none';
+  if (tab === 'tehilim') loadTehilim();
+}
+function loadTehilim() {
+  const chapter = (getDayOfYear() % 150) + 1;
+  document.getElementById('tehilimHeader').textContent = `פרק ${chapter}`;
+  document.getElementById('tehilimText').textContent = 'טוען...';
+
+  fetch(`https://www.sefaria.org/api/texts/Psalms.${chapter}?lang=he`)
+    .then(r => r.json())
+    .then(data => {
+      const verses = data.he;
+      const text = verses.map((v, i) => `${i + 1}. ${v}`).join('\n');
+      document.getElementById('tehilimText').textContent = text;
+    })
+    .catch(() => {
+      document.getElementById('tehilimText').textContent = 'שגיאה בטעינה, נסי שוב.';
+    });
+}
