@@ -1,0 +1,204 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #fdf6ee;
+  --warm: #f0e6d3;
+  --gold: #c8a96e;
+  --gold-dark: #a8893e;
+  --text: #2a1f14;
+  --text-muted: #7a6a55;
+  --text-light: #b0a090;
+  --card-bg: rgba(255,255,255,0.72);
+  --border: rgba(200,169,110,0.25);
+}
+
+body {
+  font-family: 'Heebo', sans-serif;
+  background-color: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  direction: rtl;
+  overflow: hidden;
+}
+
+/* --- background blobs --- */
+.bg-shapes { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+.shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.35;
+}
+.s1 { width: 500px; height: 500px; background: #e8d5b0; top: -120px; right: -100px; }
+.s2 { width: 400px; height: 400px; background: #d4c4a0; bottom: -80px; left: -80px; }
+.s3 { width: 250px; height: 250px; background: #f0dfc0; top: 40%; left: 55%; }
+
+/* --- layout --- */
+.container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 560px;
+  padding: 2rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.4rem;
+  animation: fadeUp 0.7s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- header --- */
+header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo {
+  font-size: 22px;
+  color: var(--gold);
+  line-height: 1;
+}
+h1 {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-weight: 700;
+  font-size: 26px;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+/* --- date pill --- */
+.date-pill {
+  font-size: 13px;
+  color: var(--text-muted);
+  background: rgba(200,169,110,0.13);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 5px 16px;
+}
+
+/* --- card --- */
+.card {
+  width: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.8rem 2.2rem 2rem;
+  position: relative;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 4px 32px rgba(160,130,80,0.10);
+  animation: fadeUp 0.7s 0.15s ease both;
+}
+.quote-mark {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 80px;
+  line-height: 0.6;
+  color: var(--gold);
+  opacity: 0.5;
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  user-select: none;
+}
+.quote-text {
+  font-family: 'Frank Ruhl Libre', serif;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 1.85;
+  color: var(--text);
+  text-align: center;
+  padding-top: 0.5rem;
+  transition: opacity 0.35s ease;
+}
+.quote-text.fade { opacity: 0; }
+.quote-footer {
+  margin-top: 1.4rem;
+  text-align: center;
+}
+.quote-num {
+  font-size: 11px;
+  color: var(--text-light);
+  letter-spacing: 0.06em;
+}
+
+/* --- mode toggle --- */
+.mode-toggle {
+  display: flex;
+  gap: 8px;
+  background: rgba(200,169,110,0.1);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 4px;
+}
+.mode-btn {
+  background: none;
+  border: none;
+  border-radius: 20px;
+  padding: 7px 20px;
+  font-size: 13px;
+  font-family: 'Heebo', sans-serif;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: all 0.22s ease;
+}
+.mode-btn.active {
+  background: var(--gold);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* --- main button --- */
+.main-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--text);
+  color: var(--cream);
+  border: none;
+  border-radius: 14px;
+  padding: 13px 32px;
+  font-size: 15px;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.18s ease, background 0.18s ease;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.main-btn:hover { background: #1a1008; transform: translateY(-2px); }
+.main-btn:active { transform: translateY(0); }
+.main-btn svg { flex-shrink: 0; }
+
+.share-row {
+  display: flex;
+  gap: 10px;
+}
+.share-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 22px;
+  font-size: 14px;
+  font-family: 'Heebo', sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+.share-btn:hover { transform: translateY(-2px); opacity: 0.85; }
+.share-btn.whatsapp { background: #25D366; color: #fff; border-color: #25D366; }
+.share-btn.copy { background: var(--warm); color: var(--text); }
+
+/* --- responsive --- */
+@media (max-width: 480px) {
+  .quote-text { font-size: 19px; }
+  h1 { font-size: 22px; }
+}
