@@ -1,0 +1,15 @@
+{
+  "name": "המשפט היומי",
+  "short_name": "משפט יומי",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdf6ee",
+  "theme_color": "#c8a96e",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}
